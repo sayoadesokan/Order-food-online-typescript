@@ -3,6 +3,14 @@ import { createVendorInput } from '../dto/Index';
 import { vendor } from '../models/Vendor';
 import { generatePassword, generateSalt } from '../utils';
 
+export const findVendor = async (id: string | undefined, email?: string) => {
+  if (email) {
+    return await vendor.findOne({ email: email });
+  } else {
+    return await vendor.findById(id);
+  }
+};
+
 export const createVendor = async (
   req: Request,
   res: Response,
@@ -46,29 +54,40 @@ export const createVendor = async (
     coverImage: [],
   });
 
-  //   const newVendor = await createVendor.save();
   return res.status(200).json(createVendor);
-
-  res.json({
-    name,
-    address,
-    phone,
-    pinCode,
-    foodType,
-    email,
-    password,
-    ownerName,
-  });
 };
 
 export const getVendor = async (
   req: Request,
   res: Response,
   next: NextFunction
-) => {};
+) => {
+  try {
+    const vendors = await vendor.find();
+    if (!vendors) {
+      res.json({ message: 'no vendor available' });
+    }
+
+    res.json(vendors);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const getVendorById = async (
   req: Request,
   res: Response,
   next: NextFunction
-) => {};
+) => {
+  try {
+    const vendorId = req.params.id;
+    const Vendor = await findVendor(vendorId);
+    if (!Vendor) {
+      res.json({ message: 'Vendor does not exist' });
+    }
+
+    res.status(200).json(Vendor);
+  } catch (error) {
+    console.log(error);
+  }
+};

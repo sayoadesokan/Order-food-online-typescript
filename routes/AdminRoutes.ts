@@ -8,6 +8,6 @@ const router = express.Router();
 router
   .post('/vendor', createVendor)
   .get('/vendor', getVendor)
-  .get('./vendor/:id', getVendorById);
+  .get('/vendor/:id', getVendorById);
 
 export { router as AdminRoutes };

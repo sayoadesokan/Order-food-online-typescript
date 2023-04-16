@@ -19,7 +19,7 @@ const startServer = async () => {
     await mongoose.connect(MONGO_URI);
     console.log('Connected to Database');
     app.listen(8800, () => {
-      console.log(`Listening on port http://localhost:8888`);
+      console.log(`Listening on port http://localhost:8800`);
     });
   } catch (error) {
     console.log(error);

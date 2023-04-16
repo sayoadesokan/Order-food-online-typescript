@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 
 export const generateSalt = async () => {
-  return bcrypt.gensalt();
+  return bcrypt.genSalt();
 };
 
 export const generatePassword = async (password: string, salt: string) => {
