@@ -8,3 +8,15 @@ export interface createVendorInput {
   email: string;
   password: string;
 }
+
+export interface vendorLoginInputs {
+  email: string;
+  password: string;
+}
+
+export interface vendorPayload {
+  _id: string;
+  email: string;
+  name: string;
+  foodType: string[];
+}
