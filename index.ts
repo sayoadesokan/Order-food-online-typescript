@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import { vendorRoutes } from './routes/VendorRoutes';
 import { AdminRoutes } from './routes/AdminRoutes';
 import { MONGO_URI } from './config/Index';
+import path from 'path';
 
 const app = express();
 app.use(express.json());
@@ -13,6 +14,7 @@ app.use(cors());
 
 app.use('/admin', AdminRoutes);
 app.use('/vendor', vendorRoutes);
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 const startServer = async () => {
   try {
