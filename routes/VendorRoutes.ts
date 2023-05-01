@@ -9,7 +9,7 @@ import {
   vendorLogin,
 } from '../controllers';
 import { Authenticate } from '../middleware/commonAuth';
-import multer from 'multer'; //npm install multer @types/multer
+import multer from 'multer';
 
 const router = express.Router();
 
@@ -26,7 +26,7 @@ const images = multer({ storage: imageStorage }).array('images', 10);
 
 router
   .use(Authenticate)
-  .post('/login', vendorLogin)
+  .post('/loginnn', vendorLogin)
   .get('/profile', getVendorProfile)
   .patch('/profile', updateVendorProfile)
   .patch('/service', updateVendorService)

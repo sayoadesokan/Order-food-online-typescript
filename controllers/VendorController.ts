@@ -12,9 +12,12 @@ export const vendorLogin = async (
   next: NextFunction
 ) => {
   try {
+    res.json('You are logged in');
     const { email, password } = <vendorLoginInputs>req.body;
 
     const existingVendor = await findVendor('', email);
+
+    return res.json(existingVendor);
 
     if (existingVendor) {
       const validation = await validatePassword(
