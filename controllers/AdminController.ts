@@ -33,7 +33,10 @@ export const createVendor = async (
     return res.json({ message: 'User already exist' });
   }
 
+  //install bcrypt (npm i bcrypt, @types/bcrypt, npm i --save-dev @types/bcrypt)
+  //generate a salt
   const salt = await generateSalt();
+  //encrypt the password using the salt
   const userPassword = await generatePassword(password, salt);
 
   const createVendor = await vendor.create({
