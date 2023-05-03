@@ -14,23 +14,9 @@ export interface vendorLoginInputs {
   password: string;
 }
 
-export interface editVendorInputs {
-  name: string;
-  foodType: [string];
-  address: string;
-  phone: string;
-}
-
 export interface vendorPayload {
   _id: string;
   email: string;
   name: string;
-}
-
-declare global {
-  namespace Express {
-    interface Request {
-      user?: vendorPayload;
-    }
-  }
+  foodType: string[];
 }

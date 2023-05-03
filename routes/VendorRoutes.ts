@@ -1,37 +1,27 @@
 import express, { Request, Response, NextFunction } from 'express';
 import {
-  addFood,
-  getFood,
   getVendorProfile,
-  updateCoverProfile,
   updateVendorProfile,
   updateVendorService,
   vendorLogin,
 } from '../controllers';
+<<<<<<< HEAD
 import { Authenticate } from '../middleware/commonAuth';
 import multer from 'multer';
+=======
+>>>>>>> parent of 28902bb (image upload added)
 
 const router = express.Router();
 
-const imageStorage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'image');
-  },
-  filename: function (req, file, cb) {
-    cb(null, new Date().toISOString() + '_' + file.originalname);
-  },
-});
-
-const images = multer({ storage: imageStorage }).array('images', 10);
-
 router
+<<<<<<< HEAD
   .use(Authenticate)
   .post('/loginnn', vendorLogin)
+=======
+  .post('/login', vendorLogin)
+>>>>>>> parent of 28902bb (image upload added)
   .get('/profile', getVendorProfile)
   .patch('/profile', updateVendorProfile)
-  .patch('/service', updateVendorService)
-  .patch('/coverImage', images, updateCoverProfile)
-  .post('/food', images, addFood)
-  .get('/foods', getFood);
+  .patch('/service', updateVendorService);
 
 export { router as vendorRoutes };
