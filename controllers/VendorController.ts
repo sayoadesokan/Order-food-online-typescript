@@ -10,12 +10,11 @@ export const vendorLogin = async (
   next: NextFunction
 ) => {
   try {
-    res.json('You are logged in');
+    console.log('here!');
     const { email, password } = <vendorLoginInputs>req.body;
 
     const existingVendor = await findVendor('', email);
-
-    return res.json(existingVendor);
+    console.log(existingVendor);
 
     if (existingVendor) {
       const validation = await validatePassword(
@@ -25,15 +24,14 @@ export const vendorLogin = async (
       );
 
       if (validation) {
-        const signature = await generateSignature({
+        const signature = generateSignature({
           _id: existingVendor.id,
           email: existingVendor.email,
           foodType: existingVendor.foodType,
           name: existingVendor.name,
         });
 
-        console.log('meant to be SIGNATURE');
-        return res.json({ signature });
+        return res.json(signature);
       } else {
         res.json({ message: 'password is not correct' });
       }

@@ -5,14 +5,23 @@ import {
   updateVendorService,
   vendorLogin,
 } from '../controllers';
+<<<<<<< HEAD
 import { Authenticate } from '../middleware/commonAuth';
+<<<<<<< HEAD
 import multer from 'multer';
-
 const router = express.Router();
 
 router
-  // .use(Authenticate)
+<<<<<<< HEAD
+  .use(Authenticate)
+<<<<<<< HEAD
+  .post('/loginnn', vendorLogin)
+=======
   .post('/login', vendorLogin)
+>>>>>>> parent of 28902bb (image upload added)
+=======
+  .post('/login', vendorLogin)
+>>>>>>> parent of 572b0fe (errors)
   .get('/profile', getVendorProfile)
   .patch('/profile', updateVendorProfile)
   .patch('/service', updateVendorService);
