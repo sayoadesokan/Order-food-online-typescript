@@ -1,25 +1,15 @@
 import express from 'express';
-import cors from 'cors';
-import mongoose from 'mongoose';
-
-import { vendorRoutes } from './routes/VendorRoutes';
-import { AdminRoutes } from './routes/AdminRoutes';
-import { MONGO_URI } from './config/Index';
-import path from 'path';
-
-const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cors());
-
-app.use('/admin', AdminRoutes);
-app.use('/vendor', vendorRoutes);
-app.use('/images', express.static(path.join(__dirname, 'images')));
+import Database from './services/Database';
+import expressApp from './services/expressApp';
 
 const startServer = async () => {
   try {
-    await mongoose.connect(MONGO_URI);
-    console.log('Connected to Database');
+    const app = express();
+
+    await Database();
+
+    await expressApp(app);
+
     app.listen(8800, () => {
       console.log(`Listening on port http://localhost:8800`);
     });
