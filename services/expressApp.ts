@@ -6,6 +6,7 @@ import { AdminRoutes } from '../routes/AdminRoutes';
 
 import path from 'path';
 import { shoppingRoute } from '../routes/ShoppingRoutes';
+import { CustomerRoutes } from '../routes/CustomerRoutes';
 
 export default async (app: Application) => {
   app.use(express.json());
@@ -15,6 +16,7 @@ export default async (app: Application) => {
 
   app.use('/admin', AdminRoutes);
   app.use('/vendor', vendorRoutes);
+  app.use('/customer', CustomerRoutes);
   app.use(shoppingRoute);
 
   return app;
