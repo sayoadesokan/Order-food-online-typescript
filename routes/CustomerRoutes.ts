@@ -7,6 +7,7 @@ import {
   getCustomerProfile,
   requestOTP,
 } from '../controllers';
+import { Authenticate } from '../middleware/commonAuth';
 
 const router = express.Router();
 
@@ -16,6 +17,7 @@ router.post('/signup', customerSignUp);
 router.post('/login', customerLogin);
 
 //Authentication
+router.use(Authenticate);
 
 /**----------------Verify Customer Account -------------**/
 router.patch('/verify', customerVerify);

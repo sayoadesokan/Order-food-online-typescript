@@ -1,3 +1,5 @@
+import { TWILLO_ACCOUNT_ID, TWILLO_AUTHTOKEN } from '../config/Index';
+
 //Email
 
 //Notification
@@ -12,6 +14,19 @@ export const generateOtp = () => {
   return { otp, expiry };
 };
 
-export const onRequestOTP = async (otp: number, to: string) => {};
+export const onRequestOTP = async (otp: number, toPhoneNumber: string) => {
+  const accountId = TWILLO_ACCOUNT_ID;
+  const authToken = TWILLO_AUTHTOKEN;
+
+  const client = require('twilio')(accountId, authToken);
+
+  const response = await client.messages.create({
+    body: `Your OTP is ${otp}`,
+    from: '',
+    to: toPhoneNumber,
+  });
+
+  return response;
+};
 
 //payment notification or emails
