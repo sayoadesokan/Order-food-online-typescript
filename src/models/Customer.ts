@@ -44,6 +44,6 @@ const CustomerSchema = new Schema(
   }
 );
 
-const Customer = mongoose.model('Vendor', CustomerSchema);
+const Customer = mongoose.model<CustomerDoc>('Customer', CustomerSchema);
 
 export { Customer };
