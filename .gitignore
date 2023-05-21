@@ -4,3 +4,4 @@ node_modules
 /config/index
 config
 json
+dist
