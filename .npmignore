@@ -1,0 +1,37 @@
+# Ignore development files and directories
+node_modules/
+src/
+tests/
+.git/
+.gitignore
+.dockerignore
+.env
+.env.example
+.dockerignore
+
+# Ignore specific files
+README.md
+LICENSE
+.dockerignore
+.npmignore
+
+# Exclude Docker-related files
+Dockerfile
+docker-compose.yml
+
+# Exclude PostgreSQL-related files
+pgdata/
+
+# Exclude IDE and editor configuration files
+.idea/
+.vscode/
+
+# Exclude build output directories
+dist/
+build/
+
+# Exclude temporary and backup files
+*.log
+*.swp
+*.swo
+*.bak
