@@ -1,6 +1,7 @@
 import express from 'express';
 import Database from './services/Database';
 import expressApp from './services/expressApp';
+import { PORT } from './config/Index';
 
 const startServer = async () => {
   try {
@@ -10,8 +11,8 @@ const startServer = async () => {
 
     await expressApp(app);
 
-    app.listen(8800, () => {
-      console.log(`Listening on port http://localhost:8800`);
+    app.listen(PORT, () => {
+      console.log(`Listening on port http://localhost:${PORT}`);
     });
   } catch (error) {
     console.log(error);

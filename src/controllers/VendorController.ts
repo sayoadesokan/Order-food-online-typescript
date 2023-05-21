@@ -24,7 +24,7 @@ export const vendorLogin = async (
       );
 
       if (validation) {
-        const signature = generateSignature({
+        const signature = await generateSignature({
           _id: existingVendor.id,
           email: existingVendor.email,
           foodType: existingVendor.foodType,
@@ -52,9 +52,11 @@ export const getVendorProfile = async (
 ) => {
   try {
     const user = req.user;
+    console.log('here');
 
     if (user) {
       const existingVendor = await findVendor(user._id);
+      console.log(existingVendor);
       return res.json(existingVendor);
     }
 
@@ -165,21 +167,21 @@ export const addFood = async (
       if (vendor !== null) {
         const files = req.files as [Express.Multer.File];
 
-        const images = files.map((file: Express.Multer.File) => file.filename);
+        // const images = files.map((file: Express.Multer.File) => file.filename);
 
         const createdFood = await Food.create({
           vendorId: vendor._id,
           name: name,
           description: description,
           category: category,
-          foodTYpe: foodType,
-          images: images,
+          foodType: foodType,
+          // images: images,
           readyTime: readyTime,
           price: price,
           rating: 0,
         });
 
-        vendor.foods.push(createdFood._id); // push the _id property instead
+        vendor.foods.push(createdFood); // push the _id property instead
         const result = await vendor.save();
 
         return res.json(result);

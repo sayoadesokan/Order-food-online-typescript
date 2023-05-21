@@ -37,7 +37,7 @@ const vendorSchema = new Schema(
     ratings: { type: Number },
     foods: [
       {
-        type: mongoose.SchemaTypes.ObjectId,
+        type: Schema.Types.Mixed,
         ref: 'Food',
       },
     ],

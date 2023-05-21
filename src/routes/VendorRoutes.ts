@@ -32,6 +32,6 @@ router
   .patch('/coverimage', images, updateVendorCoverProfile)
   .patch('/service', updateVendorService)
   .post('/food', images, addFood)
-  .post('/foods', getFood);
+  .get('/foods', getFood);
 
 export { router as vendorRoutes };
