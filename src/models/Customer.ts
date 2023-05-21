@@ -8,7 +8,7 @@ interface CustomerDoc extends Document {
   lastName: string;
   address: string;
   phone: string;
-  verified: string;
+  verified: boolean;
   otp: number;
   otp_expiry: number;
   lat: number;

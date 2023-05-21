@@ -137,8 +137,9 @@ export const customerVerify = async (req: Request, res: Response) => {
       const profile = await Customer.findById(customer._id);
 
       if (profile) {
-        if (profile.otp === parseInt(otp) && profile.otp_expiry >= new Date()) {
+        if (profile.otp === parseInt(otp) && profile.otp_expiry >= Date.now()) {
           profile.verified = true;
+          // Rest of your code...
 
           const updateCustomerResponse = await profile.save();
 
@@ -175,7 +176,7 @@ export const requestOTP = async (req: Request, res: Response) => {
         const { otp, expiry } = generateOtp();
 
         profile.otp = otp;
-        profile.otp_expiry = expiry;
+        profile.otp_expiry = expiry.getTime(); // Convert expiry to Unix timestamp
 
         await profile.save();
         await onRequestOTP(otp, profile.phone);
